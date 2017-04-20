@@ -1,0 +1,41 @@
+<button class="btn btn-default show-latest-btn" data-toggle="modal" data-target="#latest-modal" (click)="OnClick()">Latest cases</button>
+
+<!-- Modal -->
+<div class="modal fade" id="latest-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h5 class="modal-title" id="myModalLabel">Latest Cases</h5>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-hover" *ngIf="cases!=undefined">
+          <thead>
+            <tr>
+              <th>Case ID</th>
+              <th>Surgery Type</th>
+              <th>Surgeon</th>
+              <th>Surgery Date</th>
+              <th>Engineer</th>
+              <th>Upload Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cases">
+              <td>{{item.caseInfo.caseId}}</td>
+              <td>{{item.caseInfo.surgeryType}}</td>
+              <td>{{item.caseInfo.surgeonName}}</td>
+              <td>{{item.caseInfo.surgeryDate}}</td>
+              <td>{{item.caseInfo.engineer}}</td>
+              <td>{{item.caseInfo.uploadDate}}</td>              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>

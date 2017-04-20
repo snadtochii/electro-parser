@@ -1,0 +1,36 @@
+<div *ngIf="data!==null">
+    <table>
+        <tr>
+        
+            <td>
+                <button class="btn-link copy" [ngxClipboard]="inputTargetId">
+                    <input class="btn" readonly type="text" value={{data.caseId}} #inputTargetId>
+                </button>
+            </td>
+            <td>
+                <button class="btn-link copy" [ngxClipboard]="inputTargetST">
+                    <input class="btn" readonly type="text" value={{data.surgeryType}} #inputTargetST>
+                </button>
+            </td>
+            <td>
+                <button class="btn-link copy" [ngxClipboard]="inputTargetSN">
+                    <input class="btn copy" readonly type="text" value={{data.surgeonName}} #inputTargetSN> 
+                </button>
+            </td>
+            <td>
+                <button class="btn-link copy" [ngxClipboard]="inputTargetSD">
+                    <input class="btn" readonly type="text" value={{data.surgeryDate}} #inputTargetSD>             
+                </button>
+            </td>
+            <td>
+                <button class="btn-link copy" [ngxClipboard]="inputTargetEn">
+                    <input class="btn" readonly type="text" value={{data.engineer}} #inputTargetEn>
+                </button>
+            </td>
+            <td>
+                <button class="btn-link copy" [ngxClipboard]="inputTargetUD">
+                    <input class="btn" readonly type="text" value={{data.uploadDate}} #inputTargetUD>
+                </button>
+            </td>
+    </table>
+</div>

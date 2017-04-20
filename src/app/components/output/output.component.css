@@ -1,0 +1,14 @@
+td {
+    margin: 10px;
+}
+td input{
+    width: 100%;
+    background: transparent;
+}
+table{
+    width: 100%;
+}
+.copy{
+    width: 100%;
+}
+

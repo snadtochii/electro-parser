@@ -1,0 +1,15 @@
+.main{
+    padding: 5px 15px 5px 15px;  
+}
+.row{
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.cols{
+    padding-right: 5px;
+    padding-left: 5px;
+    height: 148px;
+}
+.output{
+    height: 36px;
+}

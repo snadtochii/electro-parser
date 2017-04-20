@@ -1,0 +1,15 @@
+.modal-header{
+    padding: 5px 15px 0px 15px;
+}
+.modal-body{
+    padding: 0 15px;
+}
+.form-group {
+    margin-bottom: 3px;
+}
+.modal-footer{
+    padding: 0px 15px 10px 15px
+}
+.modal-dialog{
+    margin: auto;
+}

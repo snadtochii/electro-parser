@@ -1,0 +1,11 @@
+.dl-horizontal{
+        margin: 20px -20px 0 0;
+        height: 150px;
+}
+.dl-horizontal>dt{
+        width: 100px;
+}
+.dl-horizontal>dd{
+        margin-left: 110px;
+}
+.col-xs-12>dt, dd { margin: 0; padding: 0; } dt { float: left; margin-right: 0.3em; }
