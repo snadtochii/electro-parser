@@ -36,7 +36,7 @@ export class ControlsPanelComponent implements OnInit {
   }
 
   OnGenerate() {
-    console.log(fs.copy(`${this.pathToSF}\\${this.currentCase.surgeryType}_History.docx`,
+    fs.copy(`${this.pathToSF}\\${this.currentCase.surgeryType}_History.docx`,
       `${this.pathToWF}${this.currentCase.caseId}\\${this.currentCase.caseId}_History.docx`,
       (er) => {
         if (er) {
@@ -44,7 +44,7 @@ export class ControlsPanelComponent implements OnInit {
         } else {
           console.log('success');
         }
-      }));
+      });
 
       shell.openItem(`${this.pathToWF}${this.currentCase.caseId}\\${this.currentCase.caseId}_History.docx`);
       if (this.openMimics) {

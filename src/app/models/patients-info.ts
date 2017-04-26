@@ -3,5 +3,6 @@ export class PatientsInfo{
         public firstName: string, 
         public middleName: string, 
         public lastName: string, 
-        public gender: string) {  }
+        public gender: string,
+        public birthDate: string) {  }
 }

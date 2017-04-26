@@ -7,9 +7,24 @@
     margin: 0;
     padding: 0;
 }
-.controls{
-    padding: 0 5px; 
-}
 .controls-container{
-    padding: 10px 0;
+    padding: 10px 5px;
+}
+
+.rej-section{
+    width: 100%;
+}
+.rej-container{
+    padding: 0 2px;
+}
+.modal-content *{
+    text-transform: none; 
+}
+.modal-dialog{
+    margin: auto;
+}
+#comment-area{
+    width: 100%;
+    height: 175px;
+    resize: none;
 }

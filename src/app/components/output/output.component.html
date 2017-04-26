@@ -1,34 +1,33 @@
 <div *ngIf="data!==null">
-    <table>
+    <table class="text-capitalize">
         <tr>
-        
             <td>
-                <button class="btn-link copy" [ngxClipboard]="inputTargetId">
+                <button class="btn-link copy" [ngxClipboard]="inputTargetId"><!-- data-toggle="tooltip" data-placement="top" title="" data-original-title="Case Id" -->
                     <input class="btn" readonly type="text" value={{data.caseId}} #inputTargetId>
                 </button>
             </td>
             <td>
-                <button class="btn-link copy" [ngxClipboard]="inputTargetST">
+                <button class="btn-link copy" [ngxClipboard]="inputTargetST"> <!--data-toggle="tooltip" data-placement="top" title="" data-original-title="Surgery Type" -->
                     <input class="btn" readonly type="text" value={{data.surgeryType}} #inputTargetST>
                 </button>
             </td>
             <td>
-                <button class="btn-link copy" [ngxClipboard]="inputTargetSN">
+                <button class="btn-link copy" [ngxClipboard]="inputTargetSN"><!-- data-toggle="tooltip" data-placement="top" title="" data-original-title="Surgeon Name" >-->
                     <input class="btn copy" readonly type="text" value={{data.surgeonName}} #inputTargetSN> 
                 </button>
             </td>
             <td>
-                <button class="btn-link copy" [ngxClipboard]="inputTargetSD">
+                <button class="btn-link copy" [ngxClipboard]="inputTargetSD"> <!-- data-toggle="tooltip" data-placement="top" title="" data-original-title="Surgery Date" >-->
                     <input class="btn" readonly type="text" value={{data.surgeryDate}} #inputTargetSD>             
                 </button>
             </td>
             <td>
-                <button class="btn-link copy" [ngxClipboard]="inputTargetEn">
+                <button class="btn-link copy" [ngxClipboard]="inputTargetEn"> <!--data-toggle="tooltip" data-placement="top" title="" data-original-title="Engineer" -->
                     <input class="btn" readonly type="text" value={{data.engineer}} #inputTargetEn>
                 </button>
             </td>
             <td>
-                <button class="btn-link copy" [ngxClipboard]="inputTargetUD">
+                <button class="btn-link copy"  [ngxClipboard]="inputTargetUD"> <!--data-toggle="tooltip" data-placement="top" title="" data-original-title="Upload Date"-->
                     <input class="btn" readonly type="text" value={{data.uploadDate}} #inputTargetUD>
                 </button>
             </td>

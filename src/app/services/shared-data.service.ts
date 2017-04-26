@@ -3,13 +3,15 @@ import { Observable, Subject } from 'rxjs';
 
 import { Case, CaseInfo, PatientsInfo, Parser } from '../models/index';
 
+///development
+import {CASESMOCK} from '../models/case-mock';
 
 @Injectable()
 export class SharedDataService {
   caseInfo: CaseInfo;
   patientsInfo: PatientsInfo;
   newCase: Case;
-  private _latestCases: Case[] = [];
+  private _latestCases: Case[] = CASESMOCK;//[];
   private cs = new Subject<Case>();
 
   cs$ = this.cs.asObservable();
@@ -23,7 +25,7 @@ export class SharedDataService {
     if (!caseInfoParsed && !patientsInfoParsed) return;
 
     this.caseInfo = new CaseInfo(caseInfoParsed['Case ID'], caseInfoParsed['Surgery Type'], caseInfoParsed['Surgeon Name'], caseInfoParsed['Surgery Date'], additionalData.engineer, additionalData.uploadDate)
-    this.patientsInfo = new PatientsInfo(patientsInfoParsed['First Name'], patientsInfoParsed['Middle Name'], patientsInfoParsed['Last Name'], patientsInfoParsed['Gender'])
+    this.patientsInfo = new PatientsInfo(patientsInfoParsed['First Name'], patientsInfoParsed['Middle Name'], patientsInfoParsed['Last Name'], patientsInfoParsed['Gender'], patientsInfoParsed['Birth Date'])
     this.newCase = new Case(this.caseInfo, this.patientsInfo);
     this.cs.next(this.newCase);
 
@@ -36,8 +38,8 @@ export class SharedDataService {
 
   private _formLatestCases(currentCase: Case) {
     if (this._latestCases && this._latestCases.length >= 10) {
-      this._latestCases.shift();
+      this._latestCases.pop();
     }
-    this._latestCases.push(currentCase);
+    this._latestCases.unshift(currentCase);
   }
 }

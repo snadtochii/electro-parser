@@ -8,6 +8,9 @@ td input{
 table{
     width: 100%;
 }
+table *{
+    text-transform: capitalize; 
+}
 .copy{
     width: 100%;
 }

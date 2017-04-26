@@ -50,7 +50,7 @@ export class Parser {
         let pairsInfo = [];
         let key, value;
         let index;
-        const patternsInfo = [/First Name:\n.+\n/, /Middle Name:\n.+\n/, /Last Name:\n.+\n/, /Gender:\n.+\n/];
+        const patternsInfo = [/First Name:\n.+\n/, /Middle Name:\n.+\n/, /Last Name:\n.+\n/, /Gender:\n.+\n/, /Birth Date:\n.+\n/];
 
         for (let i = 0; i < patternsInfo.length; i++) {
             pairsInfo[i] = patternsInfo[i].exec(textToParse);
