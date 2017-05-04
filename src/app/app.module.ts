@@ -10,13 +10,14 @@ import { ControlsPanelComponent } from './components/controls-panel/controls-pan
 import { SettingsComponent } from './components/settings/settings.component';
 import { OutputComponent } from './components/output/output.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SettingsPopupComponent } from './components/settings-popup/settings-popup.component';
+import { LatestDoneComponent } from './components/latest-done/latest-done.component';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { SharedDataService } from './services/shared-data.service';
 import { ConfigService } from './services/config.service';
-import { SettingsPopupComponent } from './components/settings-popup/settings-popup.component';
-import { LatestDoneComponent } from './components/latest-done/latest-done.component';
+import { FilesControlService } from './services/files-control.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { LatestDoneComponent } from './components/latest-done/latest-done.compon
     HttpModule,
     ClipboardModule
   ],
-  providers: [SharedDataService, ConfigService],
+  providers: [SharedDataService, ConfigService, FilesControlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@
 // electron
 const { app, BrowserWindow } = require('electron');
 const fs = require('fs');
+const path = require('path');
 
 let win = null;
 const defaultWinOptions = {
@@ -14,7 +15,7 @@ let winOptions;
 
 function createWindow() {
     try {
-        winOptions = JSON.parse(fs.readFileSync(__dirname + '/win.config.json'));
+        winOptions = JSON.parse(fs.readFileSync(path.join(__dirname, 'win.config.json')));
     }
     catch (er) {
         // throw er
@@ -29,14 +30,14 @@ function createWindow() {
         minHeight: winOptions.minHeight,
     });
 
-    win.setMenu(null);
-    win.loadURL(__dirname + '/public/index.html')
+    // win.setMenu(null);
+    win.loadURL(path.join(__dirname, 'public/index.html'));
 
     win.on('close', () => {
         let size = win.getSize();
         winOptions.width = size[0];
         winOptions.height = size[1];
-        fs.writeFileSync(__dirname + '\\win.config.json', JSON.stringify(winOptions));
+        fs.writeFileSync(path.join(__dirname, 'win.config.json'), JSON.stringify(winOptions));
     });
 
     win.on('closed', () => {

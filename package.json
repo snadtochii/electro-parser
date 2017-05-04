@@ -1,5 +1,6 @@
 {
   "name": "electro-parser",
+  "productName": "Electro-Parser",
   "version": "0.1.0",
   "main": "./main.js",
   "license": "MIT",
@@ -13,7 +14,8 @@
     "start": "webpack-dev-server --port=4200",
     "prepree2e": "npm start",
     "pree2e": "webdriver-manager update --standalone false --gecko false --quiet",
-    "electron": "webpack && electron main.js"
+    "electron": "webpack && electron main.js",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electro-Parser\""
   },
   "private": true,
   "dependencies": {
@@ -41,6 +43,7 @@
     "css-loader": "^0.26.1",
     "cssnano": "^3.10.0",
     "electron": "^1.6.2",
+    "electron-packager": "^8.6.0",
     "electron-reload": "^1.1.0",
     "exports-loader": "^0.6.3",
     "file-loader": "^0.10.0",

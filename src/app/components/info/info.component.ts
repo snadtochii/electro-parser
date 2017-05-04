@@ -19,7 +19,7 @@ export class InfoComponent implements OnInit {
     })
     
     ///development
-    this.data = CASEMOCK.patientsInfo;
+    //this.data = CASEMOCK.patientsInfo;
    }
 
   ngOnInit() {

@@ -11,7 +11,7 @@ export class SharedDataService {
   caseInfo: CaseInfo;
   patientsInfo: PatientsInfo;
   newCase: Case;
-  private _latestCases: Case[] = CASESMOCK;//[];
+  private latestCases: Case[] = CASESMOCK;//[];
   private cs = new Subject<Case>();
 
   cs$ = this.cs.asObservable();
@@ -33,13 +33,13 @@ export class SharedDataService {
   }
 
   getLatestCases(): Observable<Case[]> {
-    return Observable.of(this._latestCases);
+    return Observable.of(this.latestCases);
   }
 
   private _formLatestCases(currentCase: Case) {
-    if (this._latestCases && this._latestCases.length >= 10) {
-      this._latestCases.pop();
+    if (this.latestCases && this.latestCases.length >= 10) {
+      this.latestCases.pop();
     }
-    this._latestCases.unshift(currentCase);
+    this.latestCases.unshift(currentCase);
   }
 }

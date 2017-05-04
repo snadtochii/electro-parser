@@ -1,5 +1,5 @@
-<div class="col-xs-12">
-  <dl *ngIf="data" class="dl-horizontal">
+<div class="col-xs-12" *ngIf="data; else startingBlock">
+  <dl class="dl-horizontal">
     <dt>First Name:</dt>
     <dd>{{data.firstName}}</dd>
     <dt>Middle Name:</dt>
@@ -12,3 +12,4 @@
     <dd>{{data.birthDate}}</dd>
   </dl>
 </div>
+<ng-template #startingBlock>Here will be patient's info..</ng-template>

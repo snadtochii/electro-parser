@@ -1,33 +1,33 @@
 <div class="controls-container">
   <div class="form-group form-inline">
-    <button class="btn btn-default" (click)="OnGenerate()">start</button>
+    <a href="#" class="btn btn-default" [class.disabled]="!currentCase" (click)="onGenerate()">start</a>
     <div class="checkbox">
-      <label for="open-mimics"><input type="checkbox" id="open-mimics" [(ngModel)]="openMimics"> Run Mimics</label>
+      <label for="open-mimics"><input type="checkbox" id="open-mimics" [disabled]="!currentCase" [(ngModel)]="openMimics"> Run Mimics</label>
     </div>
   </div>
   <div class="btn-group">
-    <a href="#" class="btn btn-default" [ngxClipboard]="inputTargetDef">
+    <a href="#" class="btn btn-default" [class.disabled]="!currentCase" [ngxClipboard]="inputTargetDef">
      Copy path
-    <input class="copy-path" type="text" readonly value="{{path}}{{currentCase.caseId}}\{{currentCase.caseId}}.mcs" #inputTargetDef>
+    <input class="copy-path" *ngIf="currentCase" type="text" readonly value="{{config.pathToWF}}{{currentCase.caseId}}\{{currentCase.caseId}}.mcs" #inputTargetDef>
   </a>
-    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-    <ul class="dropdown-menu">
+    <a href="#" class="btn btn-default dropdown-toggle" [class.disabled]="!currentCase" data-toggle="dropdown"><span class="caret"></span></a>
+    <ul class="dropdown-menu" *ngIf="currentCase">
       <li>
         <a href="#" [ngxClipboard]="inputTargetFib">
         Fibula
-        <input class="copy-path" type="text" readonly value="{{path}}{{currentCase.caseId}}\{{currentCase.caseId}}_fibula.mcs" #inputTargetFib>
+        <input class="copy-path" type="text" readonly value="{{config.pathToWF}}{{currentCase.caseId}}\{{currentCase.caseId}}_fibula.mcs" #inputTargetFib>
       </a>
       </li>
       <li>
         <a href="#" [ngxClipboard]="inputTargetHip">
         Hip
-        <input class="copy-path" type="text" readonly value="{{path}}{{currentCase.caseId}}\{{currentCase.caseId}}_hip.mcs" #inputTargetHip>
+        <input class="copy-path" type="text" readonly value="{{config.pathToWF}}{{currentCase.caseId}}\{{currentCase.caseId}}_hip.mcs" #inputTargetHip>
       </a>
       </li>
       <li>
         <a href="#" [ngxClipboard]="inputTargetScap">
        Scapula
-        <input class="copy-path" type="text" readonly value="{{path}}{{currentCase.caseId}}\{{currentCase.caseId}}_scapula.mcs" #inputTargetScap>
+        <input class="copy-path" type="text" readonly value="{{config.pathToWF}}{{currentCase.caseId}}\{{currentCase.caseId}}_scapula.mcs" #inputTargetScap>
       </a>
       </li>
     </ul>

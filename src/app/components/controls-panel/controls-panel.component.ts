@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Case, CaseInfo, PatientsInfo } from '../../models/index';
-import { SharedDataService, ConfigService } from '../../services/index';
-
-import { shell } from 'electron';
-import * as fs from 'fs-extra';
+import { Case, CaseInfo, PatientsInfo, Config } from '../../models/index';
+import { SharedDataService, ConfigService, FilesControlService } from '../../services/index';
 
 //dev
 import { CASEMOCK } from '../../models/case-mock';
@@ -15,43 +12,30 @@ import { CASEMOCK } from '../../models/case-mock';
   styleUrls: ['./controls-panel.component.css']
 })
 export class ControlsPanelComponent implements OnInit {
+
   isDropdownOpen: boolean = false;
   openMimics: boolean = true;
-  pathToWF: string;
-  pathToSF: string;
-  currentCase: CaseInfo;
+  config: any = {};
+  currentCase: CaseInfo //= CASEMOCK.caseInfo;
 
-  constructor(private sharedDataService: SharedDataService, private configService: ConfigService) {
+  constructor(private sharedDataService: SharedDataService, private configService: ConfigService, private filesControlService: FilesControlService) {
     this.sharedDataService.cs$.subscribe(data => {
       this.currentCase = data.caseInfo;
     });
-    this.currentCase = CASEMOCK.caseInfo;
   }
 
   ngOnInit() {
     this.configService.getConfig().subscribe(res => {
-      this.pathToWF = res.pathToWF;
-      this.pathToSF = res.pathToSorce;
+      console.log(res)
+      this.config = res;
     });
   }
 
-  OnGenerate() {
-    fs.copy(`${this.pathToSF}\\${this.currentCase.surgeryType}_History.docx`,
-      `${this.pathToWF}${this.currentCase.caseId}\\${this.currentCase.caseId}_History.docx`,
-      (er) => {
-        if (er) {
-          console.log(er);
-        } else {
-          console.log('success');
-        }
-      });
-
-      shell.openItem(`${this.pathToWF}${this.currentCase.caseId}\\${this.currentCase.caseId}_History.docx`);
-      if (this.openMimics) {
-        console.log(shell.openItem('C:\\Program Files\\Materialise\\Mimics Medical 19.0\\MimicsMedical.exe'));
-      }
-  }
-  OnChange() {
+  onGenerate() {
+    this.filesControlService.generateFiles(this.currentCase, this.openMimics);
     
+  }
+  onChange() {
+
   }
 }

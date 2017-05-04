@@ -21,7 +21,7 @@ export class LatestDoneComponent implements OnInit {
 
   }
 
-  OnClick() {
+  onClick() {
     this.sharedDataService.getLatestCases().subscribe(res => this.cases = res);
 
     console.log(this.cases)

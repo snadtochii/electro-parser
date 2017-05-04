@@ -1,4 +1,4 @@
-<div *ngIf="data!==null">
+<div *ngIf="data; else startingBlock">
     <table class="text-capitalize">
         <tr>
             <td>
@@ -33,3 +33,4 @@
             </td>
     </table>
 </div>
+<ng-template #startingBlock>Here will be parsed output..</ng-template>

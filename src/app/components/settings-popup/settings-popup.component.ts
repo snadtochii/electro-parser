@@ -16,18 +16,18 @@ export class SettingsPopupComponent implements OnInit {
   pathToMimics: string;
   isDoubleOpen: boolean;
 
-  config: Config;
+  config: any = {};
 
   constructor(private configService: ConfigService) {
+
+  }
+
+  ngOnInit() {
     this.configService.getConfig().subscribe(res => {
       this.config = res;
     });
   }
-
-  ngOnInit() {
-
-  }
-  OnConfigChange(form: NgForm) {
+  onConfigChange(form: NgForm) {
     console.log(form.value);
     this.configService.setConfig(form.value);
   }
