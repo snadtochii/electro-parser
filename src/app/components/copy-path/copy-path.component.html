@@ -1,0 +1,23 @@
+<div class="btn-group">
+  <a href="#" class="btn btn-default" [class.disabled]="!currentCase" (click)="copyPath(pathDef)">
+     Copy path
+  </a>
+  <a href="#" class="btn btn-default dropdown-toggle" [class.disabled]="!currentCase" data-toggle="dropdown"><span class="caret"></span></a>
+  <ul class="dropdown-menu" *ngIf="currentCase">
+    <li>
+      <a href="#" (click)="copyPath(pathFib)">
+        Fibula
+      </a>
+    </li>
+    <li>
+      <a href="#" (click)="copyPath(pathHip)">
+        Hip
+      </a>
+    </li>
+    <li>
+      <a href="#" (click)="copyPath(pathScap)">
+       Scapula
+      </a>
+    </li>
+  </ul>
+</div>

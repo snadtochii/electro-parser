@@ -1,0 +1,37 @@
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalComment">comment</button>
+
+<div id="modalComment" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="col-md-4">
+          <textarea class="form-control" name="" id="comment-area"></textarea>
+          <button type="button" class="btn btn-default" data-dismiss="modal">create comment</button>
+        </div>
+        <div class="col-md-4 com-container">
+          <div class="btn-group-vertical com-section">
+            <a href="#" class="btn btn-default">No DICOM images in the archive.</a>
+            <a href="#" class="btn btn-default">The data has expired. Study date:</a>
+            <a href="#" class="btn btn-default">Slice thickness = ..mm. Increment = ..mm</a>
+            <a href="#" class="btn btn-default">No graft data in the archive.</a>
+            <a href="#" class="btn btn-default">Small cut-off at the </a>
+            <a href="#" class="btn btn-default">Gantry tilt detected.</a>
+          </div>
+        </div>
+        <div class="col-md-4 com-container">
+          <div class="btn-group-vertical com-section">
+            <a href="#" class="btn btn-default">Patient's data doesn’t match.</a>
+            <a href="#" class="btn btn-default">FOV doesn’t cover ROI completely.</a>
+            <a href="#" class="btn btn-default">Less than 20mm around defect area.</a>
+            <a href="#" class="btn btn-default">Condylar heads are not in the fossae.</a>
+            <a href="#" class="btn btn-default">Please confirm ROI.</a>
+            <a href="#" class="btn btn-default">Please confirm if we can proceed.</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>

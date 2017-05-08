@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Case, CaseInfo, PatientsInfo, Config } from '../../models/index';
 import { SharedDataService, ConfigService, FilesControlService } from '../../services/index';
 
+import { clipboard } from 'electron';
 //dev
 import { CASEMOCK } from '../../models/case-mock';
 
@@ -15,25 +16,20 @@ export class ControlsPanelComponent implements OnInit {
 
   isDropdownOpen: boolean = false;
   openMimics: boolean = true;
-  config: any = {};
   currentCase: CaseInfo //= CASEMOCK.caseInfo;
 
-  constructor(private sharedDataService: SharedDataService, private configService: ConfigService, private filesControlService: FilesControlService) {
+  constructor(private sharedDataService: SharedDataService, private filesControlService: FilesControlService) {
     this.sharedDataService.cs$.subscribe(data => {
       this.currentCase = data.caseInfo;
     });
   }
 
   ngOnInit() {
-    this.configService.getConfig().subscribe(res => {
-      console.log(res)
-      this.config = res;
-    });
   }
 
   onGenerate() {
     this.filesControlService.generateFiles(this.currentCase, this.openMimics);
-    
+    clipboard.writeText(this.currentCase.caseId);
   }
   onChange() {
 

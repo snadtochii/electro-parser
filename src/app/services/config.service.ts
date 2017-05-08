@@ -8,16 +8,17 @@ import * as fs from 'fs-extra';
 
 @Injectable()
 export class ConfigService {
+    private readonly configPath = 'C:\\AppData\\electro-parser\\config.json';
 
     constructor(private http: Http) { }
 
     getConfig(): Observable<any> {
-        return this.http.request('D:\\duducaon\\GIT\\parser - super new\\electro-parser\\release-builds\\Electro-Parser-win32-ia32\\config.json').map(res => res.json());
-        //return fs.readJson('./config.json') //need to think about
+        return this.http.request(this.configPath).map(res => res.json());
+        //return fs.readJsonSync('D:\\duducaon\\GIT\\parser - super new\\electro-parser\\public\\config.json'); //need to think about
     }
     setConfig(config: Config) {
         console.log(config);
-        fs.writeJson('D:\\duducaon\\GIT\\parser - super new\\electro-parser\\release-builds\\Electro-Parser-win32-ia32\\config.json', config, er => {
+        fs.writeJson(this.configPath, config, er => {
             if (er) {
                 console.log(er);
             } else {

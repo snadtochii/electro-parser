@@ -18,6 +18,8 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { SharedDataService } from './services/shared-data.service';
 import { ConfigService } from './services/config.service';
 import { FilesControlService } from './services/files-control.service';
+import { CopyPathComponent } from './components/copy-path/copy-path.component';
+import { CommentCreatorComponent } from './components/comment-creator/comment-creator.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { FilesControlService } from './services/files-control.service';
     OutputComponent,
     DashboardComponent,
     SettingsPopupComponent,
-    LatestDoneComponent
+    LatestDoneComponent,
+    CopyPathComponent,
+    CommentCreatorComponent
   ],
   imports: [
     BrowserModule,
