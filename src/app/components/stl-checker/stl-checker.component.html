@@ -1,0 +1,24 @@
+<div *ngIf="path" class="stl-checker-panel">
+    <div (click)="check()">
+        There is
+        <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#stls-modal" *ngIf="stlsArr.length; else nothingFound">
+            stl(s)
+        </button>
+    </div>
+    <div class="modal fade" id="stls-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title" id="myModalLabel">Found stl(s)</h5>
+                </div>
+                <div class="modal-body">
+                    <p *ngFor="let stl of stlsArr">{{stl}}</p>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #nothingFound>{{message}}</ng-template>

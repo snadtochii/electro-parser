@@ -1,3 +1,10 @@
+#open-settings{
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 5px;
+}
+
 .modal-header{
     padding: 5px 15px 0px 15px;
 }
