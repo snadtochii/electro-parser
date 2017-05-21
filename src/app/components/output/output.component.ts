@@ -12,14 +12,21 @@ import { CASEMOCK } from '../../models/case-mock';
   styleUrls: ['./output.component.css']
 })
 export class OutputComponent implements OnInit {
-  data: any;
-  constructor(public sharedDataService: SharedDataService) {
-    this.sharedDataService.cs$.subscribe(data=>{
-      this.data = data.caseInfo;
-      console.log(data);
-    })
-    // this.data = CASEMOCK.caseInfo;
-    console.log(this.data)
+
+  caseInfo: CaseInfo;
+  flag: boolean = true;
+
+  constructor(public sharedDataService: SharedDataService) { }
+
+  ngOnInit() {
+    this.sharedDataService.cs$.subscribe(data => {
+      this.caseInfo = data.caseInfo;
+    });
   }
-  ngOnInit() { }
+
+  changeCaseType(surgeryType: string) {
+    this.caseInfo.surgeryType = surgeryType;
+    this.sharedDataService.updateCase(this.caseInfo);
+    this.flag = true;
+  }
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
 
-import { Case } from '../../models/index';
-import { SharedDataService } from '../../services/index';
+import { Case, Config } from '../../models/index';
+import { SharedDataService, ConfigService } from '../../services/index';
+
+import { StlCheckerComponent } from '../index';
 
 @Component({
   selector: 'app-data-input',
@@ -9,17 +11,21 @@ import { SharedDataService } from '../../services/index';
   styleUrls: ['./data-input.component.css']
 })
 export class DataInputComponent implements OnInit {
-  constructor(private sharedDataService: SharedDataService) {
-  }
+
+  config: Config;
+
+  constructor(private sharedDataService: SharedDataService, private configService: ConfigService) { }
 
   ngOnInit() {
-
+    this.configService.config$.subscribe(res => {
+      this.config = res;
+    });
   }
 
   onChange(textToParse) {
     let date = new Date();
     let additionalData = {
-      engineer: 'Sergey N.',
+      engineer: this.config.engineer,
       uploadDate: ((date.getDate() < 10) ? ("0" + date.getDate()) : date.getDate()).toString()
       + "/" + (((date.getMonth() + 1) < 10) ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)).toString()
     }

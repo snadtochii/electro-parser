@@ -1,8 +1,8 @@
 <div class="btn-group">
-  <a href="#" class="btn btn-default" [class.disabled]="!currentCase" (click)="copyPath(pathDef)">
+  <button href="#" class="btn btn-default" [disabled]="!currentCase" (click)="copyPath(pathDef)">
      Copy path
-  </a>
-  <a href="#" class="btn btn-default dropdown-toggle" [class.disabled]="!currentCase" data-toggle="dropdown"><span class="caret"></span></a>
+  </button>
+  <button href="#" class="btn btn-default dropdown-toggle" [disabled]="!currentCase" data-toggle="dropdown"><span class="caret"></span></button>
   <ul class="dropdown-menu" *ngIf="currentCase">
     <li>
       <a href="#" (click)="copyPath(pathFib)">

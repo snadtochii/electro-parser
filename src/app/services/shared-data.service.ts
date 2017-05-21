@@ -4,17 +4,18 @@ import { Observable, Subject } from 'rxjs';
 import { Case, CaseInfo, PatientsInfo, Parser } from '../models/index';
 
 ///development
-import {CASESMOCK} from '../models/case-mock';
+import { CASESMOCK } from '../models/case-mock';
 
 @Injectable()
 export class SharedDataService {
   caseInfo: CaseInfo;
   patientsInfo: PatientsInfo;
   newCase: Case;
-  private latestCases: Case[] = CASESMOCK;//[];
+  private latestCases: Case[] = [];
   private cs = new Subject<Case>();
 
   cs$ = this.cs.asObservable();
+
   constructor() { }
 
   parseData(textToParse: string, additionalData: any) {
@@ -41,5 +42,11 @@ export class SharedDataService {
       this.latestCases.pop();
     }
     this.latestCases.unshift(currentCase);
+  }
+  updateCase(caseInfo: CaseInfo) {
+    if (this.newCase) {
+      this.newCase.caseInfo.surgeryType = caseInfo.surgeryType;
+      this.cs.next(this.newCase);
+    }
   }
 }

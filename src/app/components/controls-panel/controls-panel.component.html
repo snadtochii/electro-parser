@@ -1,10 +1,5 @@
 <div class="controls-container">
-  <div class="form-group form-inline start-group">
-    <a href="#" class="btn btn-default" [class.disabled]="!currentCase" (click)="onGenerate()">start</a>
-    <div class="checkbox">
-      <label for="open-mimics"><input type="checkbox" id="open-mimics" [disabled]="!currentCase" [(ngModel)]="openMimics"> Run Mimics</label>
-    </div>
-  </div>
+  <app-file-gen></app-file-gen>
   <app-copy-path></app-copy-path>
   <app-comment-creator></app-comment-creator>
   <app-stl-checker></app-stl-checker>

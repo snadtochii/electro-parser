@@ -1,9 +1,8 @@
-<span class="glyphicon glyphicon-wrench btn btn-link btn-lg" data-toggle="modal" data-target="#settings-modal" id="open-settings"></span>
+<span class="glyphicon glyphicon-wrench btn btn-link btn-lg" data-toggle="modal" data-target="#settings-modal" id="open-settings"
+  (click)="initValidators(pathToWF.value, pathToSF.value, pathToMimics.value)"></span>
 
-<div class="modal fade" id="settings-modal" role="dialog" *ngIf="config">
+<div class="modal fade" id="settings-modal" role="dialog">
   <div class="modal-dialog modal-lg">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -12,23 +11,30 @@
       <div class="modal-body">
         <form class="form-horizontal" #signupForm="ngForm">
           <div class="form-group form-group-sm">
+            <label class="control-label col-sm-3" for="engineer">Enginner:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control input-sm" id="engineer" placeholder="Engineer" name="engineer" [(ngModel)]="config.engineer">
+            </div>
+          </div>
+          <div class="form-group form-group-sm" [class.has-error]="!isWFValid">
             <label class="control-label col-sm-3" for="path-to-wf">Path to working folder:</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control input-sm" id="path-to-wf" placeholder="D:\working folder\" name="pathToWF" [(ngModel)]="config.pathToWF">
+              <input type="text" class="form-control input-sm" id="path-to-wf" placeholder="D:\working folder\" name="pathToWF" #pathToWF
+                (blur)="isWFValid=checkPath(pathToWF.value)" [(ngModel)]="config.pathToWF">
             </div>
           </div>
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-sm" [class.has-error]="!isSFValid">
             <label class="control-label col-sm-3" for="path-to-sorce">Path to history sorce:</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control input-sm" id="path-to-sorce" placeholder="D:\sorce folder\" name="pathToSF" [(ngModel)]="config.pathToSF">
+              <input type="text" class="form-control input-sm" id="path-to-sorce" placeholder="D:\sorce folder\" name="pathToSF" #pathToSF
+                (blur)="isSFValid=checkPath(pathToSF.value)" [(ngModel)]="config.pathToSF">
             </div>
           </div>
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-sm" [class.has-error]="!isMimicsPathValid">
             <label class="control-label col-sm-3" for="path-to-mimics">Path to Mimics:</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control input-sm" id="path-to-mimics" 
-                placeholder="C:\Program Files\Materialise\Mimics Medical 19.0\MimicsMedical.exe" 
-                name="pathToMimics" [(ngModel)]="config.pathToMimics">
+              <input type="text" class="form-control input-sm" id="path-to-mimics" placeholder="C:\Program Files\Materialise\Mimics Medical 19.0\MimicsMedical.exe"
+                name="pathToMimics" #pathToMimics (blur)="isMimicsPathValid=checkPath(pathToMimics.value)" [(ngModel)]="config.pathToMimics">
             </div>
           </div>
           <div class="form-group form-group-sm">
@@ -41,7 +47,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onConfigChange(signupForm)">Ok</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onConfigChange(signupForm)" 
+        [disabled]="!this.isWFValid || !this.isSFValid || !this.isMimicsPathValid">Ok</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

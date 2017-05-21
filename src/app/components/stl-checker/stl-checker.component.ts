@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { SharedDataService, ConfigService, StlCheckerService } from '../../services/index';
 
-import * as fse from 'fs-extra';
-import * as watch from 'node-watch';
+import { CaseInfo, Config } from '../../models/index';
+
 import * as path from 'path';
 
 
@@ -14,42 +14,55 @@ import * as path from 'path';
 })
 export class StlCheckerComponent implements OnInit {
 
+  private defaultMessage: string = 'no STL(s)';
+  private init: boolean = false;
+
+  caseInfo: CaseInfo;
+  config: Config;
   stlsArr: string[] = [];
-  path: string;
-  config: any;
   message: string;
+  isLoading: boolean = false;
+  loaderImg: string = '../src/img/loader-static.png'//'D:\\duducaon\\GIT\\parser - super new\\electro-parser\\src\\img\\loader.gif';
   options: any = {
     filter: /\.stl/,
   }
 
-  constructor(private sharedDataService: SharedDataService, private stlCheckerService: StlCheckerService, private configService: ConfigService) {
-    this.sharedDataService.cs$.subscribe(data => {
-      this.path = `${this.config.pathToWF}${data.caseInfo.caseId}\\`;
-      this.stlsArr = [];
-      this.stlCheckerService.findFiles(this.path, this.options.filter, (er, filename) => {
-        if (er) {
-          this.message = er;
-          return;
-        }
-        this.stlsArr.push(filename);
-      });
-    });
-  }
+  constructor(private sharedDataService: SharedDataService, private stlCheckerService: StlCheckerService, private configService: ConfigService) { }
 
   ngOnInit() {
-    this.configService.getConfig().subscribe(res => {
+    this.configService.config$.subscribe(res => {
       this.config = res;
+      this.checkFolder(this.config, this.caseInfo, this.options)
+    });
+
+    this.sharedDataService.cs$.subscribe(data => {
+      this.caseInfo = data.caseInfo;
+      this.checkFolder(this.config, this.caseInfo, this.options)
+      this.init = true;
     });
   }
 
-  check() {
-    this.stlsArr = [];
-    this.stlCheckerService.findFiles(this.path, this.options.filter, (er, filename) => {
-      if (er) {
-        this.message = er;
-        return;
+  checkFolder(config: any, caseInfo: CaseInfo, options: any) {
+    if (config && caseInfo) {
+      this.loadStart();
+      this.stlsArr = [];
+      this.message = this.defaultMessage;
+      let pathForCheck = path.join(config.pathToWF, caseInfo.caseId);
+
+      let resp = this.stlCheckerService.findFiles(pathForCheck, options.filter);
+      if (resp.er) {
+        this.message = resp.er;
       }
-      this.stlsArr.push(filename);
-    });
+      this.stlsArr = resp.fileList;
+      this.loadEnd();
+    }
+  }
+  loadStart() {
+    this.isLoading = true;
+    this.loaderImg = '../src/img/loader.gif';
+  }
+  loadEnd() {
+    this.isLoading = false;
+    this.loaderImg = '../src/img/loader-static.png';
   }
 }

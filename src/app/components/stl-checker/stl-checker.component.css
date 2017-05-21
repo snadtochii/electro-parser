@@ -4,3 +4,6 @@
 .modal-dialog{
     margin: auto;
 }
+.modal-content{
+    padding: 0 15px;
+}

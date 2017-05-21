@@ -4,8 +4,10 @@
 }
 .dl-horizontal>dt{
         width: 100px;
+        font-weight: normal;
 }
 .dl-horizontal>dd{
         margin-left: 110px;
+        font-weight: bold;
 }
 .col-xs-12>dt, dd { margin: 0; padding: 0; } dt { float: left; margin-right: 0.3em; }

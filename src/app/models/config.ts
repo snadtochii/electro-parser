@@ -3,4 +3,5 @@ export interface Config {
   pathToSF: string;
   pathToMimics: string;
   isDoubleOpen: boolean;
+  engineer: string;
 }

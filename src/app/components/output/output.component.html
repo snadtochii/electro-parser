@@ -1,36 +1,47 @@
-<div *ngIf="data; else startingBlock">
+<div *ngIf="caseInfo; else startingBlock">
     <table class="text-capitalize">
         <tr>
             <td>
                 <button class="btn-link copy" [ngxClipboard]="inputTargetId"><!-- data-toggle="tooltip" data-placement="top" title="" data-original-title="Case Id" -->
-                    <input class="btn" readonly type="text" value={{data.caseId}} #inputTargetId>
+                    <input class="btn" readonly type="text" value={{caseInfo.caseId}} #inputTargetId>
                 </button>
             </td>
             <td>
-                <button class="btn-link copy" [ngxClipboard]="inputTargetST"> <!--data-toggle="tooltip" data-placement="top" title="" data-original-title="Surgery Type" -->
-                    <input class="btn" readonly type="text" value={{data.surgeryType}} #inputTargetST>
+                <button class="btn-link copy" [ngxClipboard]="inputTargetST" *ngIf="flag; else surgeryTypeMenu" (dblclick)="flag=!flag"> <!--data-toggle="tooltip" data-placement="top" title="" data-original-title="Surgery Type" -->
+                    <input class="btn" readonly type="text" value={{caseInfo.surgeryType}} #inputTargetST>
                 </button>
             </td>
             <td>
                 <button class="btn-link copy" [ngxClipboard]="inputTargetSN"><!-- data-toggle="tooltip" data-placement="top" title="" data-original-title="Surgeon Name" >-->
-                    <input class="btn copy" readonly type="text" value={{data.surgeonName}} #inputTargetSN> 
+                    <input class="btn copy" readonly type="text" value={{caseInfo.surgeonName}} #inputTargetSN> 
                 </button>
             </td>
             <td>
                 <button class="btn-link copy" [ngxClipboard]="inputTargetSD"> <!-- data-toggle="tooltip" data-placement="top" title="" data-original-title="Surgery Date" >-->
-                    <input class="btn" readonly type="text" value={{data.surgeryDate}} #inputTargetSD>             
+                    <input class="btn" readonly type="text" value={{caseInfo.surgeryDate}} #inputTargetSD>             
                 </button>
             </td>
             <td>
                 <button class="btn-link copy" [ngxClipboard]="inputTargetEn"> <!--data-toggle="tooltip" data-placement="top" title="" data-original-title="Engineer" -->
-                    <input class="btn" readonly type="text" value={{data.engineer}} #inputTargetEn>
+                    <input class="btn" readonly type="text" value={{caseInfo.engineer}} #inputTargetEn>
                 </button>
             </td>
             <td>
-                <button class="btn-link copy"  [ngxClipboard]="inputTargetUD"> <!--data-toggle="tooltip" data-placement="top" title="" data-original-title="Upload Date"-->
-                    <input class="btn" readonly type="text" value={{data.uploadDate}} #inputTargetUD>
+                <button class="btn-link copy" [ngxClipboard]="inputTargetUD"> <!--data-toggle="tooltip" data-placement="top" title="" data-original-title="Upload Date"-->
+                    <input class="btn" readonly type="text" value={{caseInfo.uploadDate}} #inputTargetUD>
                 </button>
             </td>
     </table>
 </div>
 <ng-template #startingBlock>Here will be parsed output..</ng-template>
+<ng-template #surgeryTypeMenu>
+        <select class="form-control copy" id="select" #sel (change)="changeCaseType(sel.value)" (blur)="flag=true">
+          <option disabled>choose one..</option>
+          <option value="PSI">PSI</option>
+          <option value="Orthognathics">Orthognathics</option>
+          <option value="Reconstruction">Reconstruction</option>
+          <option value="Distraction">Distraction</option>
+          <option value="CVR">CVR</option>
+          <option value="Model">Anatomical Model</option>
+        </select>
+</ng-template>

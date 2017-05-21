@@ -2,35 +2,33 @@ import { Injectable } from '@angular/core';
 
 import { SharedDataService, ConfigService } from './index';
 
+import { CaseInfo } from '../models/index';
+
 import * as fse from 'fs-extra';
-import * as watch from 'node-watch';
 import * as path from 'path';
 
 @Injectable()
 export class StlCheckerService {
 
-  constructor(private sharedDataService: SharedDataService, private configService: ConfigService) { }
+  constructor() { }
 
-  findFiles(startPath, filter, callback): void {
+  findFiles(dir, filter, fileList = []): any{
     let er;
-
-    if (!fse.existsSync(startPath)) {
-      console.log("no dir ", startPath);
-      er = "no such dir: " + startPath;
-      callback(er, null)
-      return;
+    if (!fse.existsSync(dir)) {
+      console.log("no dir ", dir);
+      er = "no such dir: " + dir;
+    } else {
+      let files = fse.readdirSync(dir);
+      files.forEach((file)=> {
+        let filename = path.join(dir, file);
+        if (fse.statSync(filename).isDirectory()) {
+          fileList = this.findFiles(filename, filter, fileList).fileList;
+        }
+        else if (filter.test(filename)) {
+          fileList.push(path.join(dir, file));
+        }
+      });
     }
-
-    let files = fse.readdirSync(startPath);
-    for (var i = 0; i < files.length; i++) {
-      let filename = path.join(startPath, files[i]);
-      let stat = fse.lstatSync(filename);
-      if (stat.isDirectory()) {
-        this.findFiles(filename, filter, callback);
-      }
-      else if (filter.test(filename)) {
-        callback(er, filename);
-      }
-    };
-  };
+    return {er, fileList};
+  }
 }
