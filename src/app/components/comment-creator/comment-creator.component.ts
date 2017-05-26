@@ -22,7 +22,6 @@ export class CommentCreatorComponent implements OnInit {
   ngOnInit() {
     this.commentService.getComments().subscribe(
       (res) => {
-
         this.commentsFullList = res.map((el, i, arr) => {
           this.commentMap.push(false);                                                  //temp
           return el
@@ -32,9 +31,6 @@ export class CommentCreatorComponent implements OnInit {
         this.commentsFullList = defaultComments;
         this.commentsFullList.forEach((el, i, arr) => { this.commentMap.push(false) })  //temp
       });
-  }
-  initComments(): void {
-    this.comments = [];
   }
   toggleComment(event: any, id: number): void {
     if (event.target.checked) {
@@ -50,7 +46,6 @@ export class CommentCreatorComponent implements OnInit {
   }
   copyComment(text: string): void {
     clipboard.writeText(text);
-    this.resetAll();
   }
   resetAll() {
     this.formedComment = "";

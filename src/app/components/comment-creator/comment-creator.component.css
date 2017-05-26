@@ -5,7 +5,7 @@
     padding: 0;
 }
 .modal-content{
-    padding: 15px;
+    padding: 20px 15px 15px 25px;
 }
 .modal-content *{
     text-transform: none; 
@@ -35,5 +35,8 @@
     display: block;
 }
 .redo-area{
-    padding-left: 5px;
+    /*padding-left: 5px;*/
+}
+.btn-copy{
+    float: right;
 }

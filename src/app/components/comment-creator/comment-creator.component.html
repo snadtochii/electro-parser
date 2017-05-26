@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalComment" (click)="initComments()">comment</button>
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalComment" (click)="resetAll()">comment</button>
 
 <div *ngIf="commentsFullList" id="modalComment" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -6,13 +6,13 @@
       <div class="modal-body">
         <div class="col-md-8 com-container">
           <div class="btn-group-vertical com-section newspaper">
-            <label *ngFor="let comment of commentsFullList; let index = index" [attr.for]="'comment'+comment.id" class="comments">
-              <input type="checkbox" [attr.id]="'comment'+comment.id" [checked]="commentMap[index]" (change)="toggleComment($event, comment.id)" value="comment.value">{{comment.name}}</label>
+            <label *ngFor="let comment of commentsFullList; let index = index" [attr.for]="'comment'+index" class="comments">
+              <input type="checkbox" [attr.id]="'comment'+index" [checked]="commentMap[index]" (change)="toggleComment($event, index)" value="comment.value">{{comment.name}}</label>
           </div>
         </div>
         <div class="col-md-4 com-container redo-area">
           <textarea class="form-control" name="" id="comment-area" value={{formedComment}} #commentArea></textarea>
-          <button type="button" class="btn btn-default btn-copy" data-dismiss="modal" (click)="copyComment(commentArea.value)">create comment</button>
+          <button type="button" class="btn btn-default btn-copy" data-dismiss="modal" (click)="copyComment(commentArea.value)">Copy comment</button>       
         </div>
       </div>
       <div class="modal-footer"></div>
