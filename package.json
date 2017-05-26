@@ -1,7 +1,9 @@
 {
   "name": "electro-parser",
   "productName": "Electro-Parser",
-  "version": "0.1.0",
+  "version": "0.9.0",
+  "description": "Electro Parser",
+  "author": "snadtochii",
   "main": "./main.js",
   "license": "MIT",
   "scripts": {
@@ -15,7 +17,35 @@
     "prepree2e": "npm start",
     "pree2e": "webdriver-manager update --standalone false --gecko false --quiet",
     "electron": "webpack && electron main.js",
-    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.FileDescription=Electro-Parser --version-string.ProductName=\"Electro-Parser\""
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.FileDescription=Electro-Parser --version-string.ProductName=\"Electro-Parser\"",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "id",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
   },
   "private": true,
   "dependencies": {
@@ -28,7 +58,6 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
-    "electron": "^1.6.2",
     "fs-extra": "^3.0.1",
     "ngx-clipboard": "^5.1.0",
     "path": "^0.12.7",
@@ -45,6 +74,7 @@
     "css-loader": "^0.26.1",
     "cssnano": "^3.10.0",
     "electron": "^1.6.2",
+    "electron-builder": "^17.10.0",
     "electron-packager": "^8.6.0",
     "electron-reload": "^1.1.0",
     "exports-loader": "^0.6.3",

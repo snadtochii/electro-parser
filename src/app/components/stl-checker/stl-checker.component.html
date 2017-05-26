@@ -4,7 +4,7 @@
         <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#stls-modal" *ngIf="stlsArr.length; else nothingFound">
             stl(s)
         </button>
-        <img src="{{loaderImg}}" alt="" (click)="checkFolder(config, caseInfo, options)">
+        <span class="glyphicon glyphicon-repeat btn btn-link refresher" (click)="checkFolder(config, caseInfo, options)"></span>
     </div>
     <div class="modal fade" id="stls-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">

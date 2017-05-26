@@ -23,6 +23,7 @@
     width: 100%;
     min-height: 150px;
     resize: none;
+    font-size: 13px;
 }
 .newspaper {
     column-count: 3;

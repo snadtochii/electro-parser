@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ConfigService, PathCheckerService } from '../../services/index';
@@ -23,7 +23,7 @@ export class SettingsPopupComponent implements OnInit {
   isSFValid: boolean = true;
   isWFValid: boolean = true;
 
-  constructor(private configService: ConfigService, private pathCheckerService: PathCheckerService) { }
+  constructor(private applicationRef: ApplicationRef, private configService: ConfigService, private pathCheckerService: PathCheckerService) { }
 
   ngOnInit() {
     this.configService.config$.subscribe((res) => {

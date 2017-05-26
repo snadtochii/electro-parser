@@ -1,6 +1,7 @@
-  <div class="form-group form-inline start-group">
-    <button href="#" class="btn btn-default" [disabled]="!currentCase" (click)="onGenerate()">start</button>
-    <div class="checkbox">
-      <label for="open-mimics"><input type="checkbox" id="open-mimics" [disabled]="!currentCase" [(ngModel)]="openMimics"> Run Mimics</label>
-    </div>
+<div class="form-group form-inline start-group">
+  <button class="btn btn-default" [disabled]="!currentCase" [class.btn-danger]="error.isFail"
+    [title]="error.fileError" (click)="onGenerate()">start</button>
+  <div class="checkbox">
+    <label for="open-mimics"><input type="checkbox" id="open-mimics" [disabled]="!currentCase" [(ngModel)]="openMimics"> Run Mimics</label>
   </div>
+</div>

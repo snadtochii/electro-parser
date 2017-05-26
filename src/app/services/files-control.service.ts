@@ -15,18 +15,18 @@ export class FilesControlService {
 
   private lastWordPattern = /(\w+)$/;
 
-  generateFiles(options: any) {
-    let pathToSorceFile = path.join(options.config.pathToWF, this.lastWordPattern.exec(options.currentCase.surgeryType)[0] + '_History.docx');
-    let pathToWorkingFile = path.join(path.join(options.config.pathToWF, options.currentCase.caseId, options.currentCase.caseId + '_History.docx'));
-    
-    fse.access(pathToWorkingFile, er => {
-      if (er) {
+  generateFiles(options: any, callback: any) {
+    let pathToSorceFile = path.join(options.config.pathToSF, this.lastWordPattern.exec(options.currentCase.surgeryType)[0] + '_History.docx');
+    let pathToWorkingFile = path.join(options.config.pathToWF, options.currentCase.caseId, options.currentCase.caseId + '_History.docx');
+
+    fse.access(pathToWorkingFile, err => {
+      if (err) {
         try {
           fse.copySync(pathToSorceFile, pathToWorkingFile);
-        } catch (er) {
-          console.log(er);
+        } catch (err) {
+          callback(err)
         }
-      }
+      } 
       this.openFiles(options, pathToWorkingFile);
     });
   }

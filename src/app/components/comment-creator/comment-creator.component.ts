@@ -13,9 +13,7 @@ import { clipboard } from 'electron';
 export class CommentCreatorComponent implements OnInit {
 
   commentMap: boolean[] = [];                                                         //temporary. Until find correct solution
-
   commentsFullList: any[];
-
   comments: any[] = [];
   formedComment: string;
 
@@ -52,12 +50,12 @@ export class CommentCreatorComponent implements OnInit {
   }
   copyComment(text: string): void {
     clipboard.writeText(text);
+    this.resetAll();
+  }
+  resetAll() {
     this.formedComment = "";
     this.comments = [];
     this.commentMap = [];                                                               //temp
     this.commentsFullList.forEach((el, i, arr) => { this.commentMap.push(false) })      //temp
-  }
-  resetAll() {
-
   }
 }
